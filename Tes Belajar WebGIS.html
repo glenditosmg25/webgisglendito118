@@ -1,0 +1,167 @@
+<html>
+<head>
+    <title>Latihan WebGIS 121230118 GLENDITO RAYADI S.</title>
+    <!-- LEAFLET CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <!-- LEAFLET JAVASCRIPT -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        // LOKASI KAJIAN
+        var map = L.map('map').setView([-5.367016, 105.317890], 20);
+        
+        // BASEMAP OPENSTREETMAP
+        var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+        osm.addTo(map);
+
+        // BASEMAP ESRI
+        var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        });
+        Esri_WorldImagery.addTo(map);
+
+        // POSISI GEDUNG GKU 1
+        var gedungGKU1 = L.marker([-5.360803, 105.309991]).addTo(map) 
+            .bindPopup('Gedung GKU 1') 
+            .openPopup(); 
+        
+        // POSISI GEDUNG E
+        var gedungE = L.marker([ -5.360003, 105.315539]).addTo(map) 
+            .bindPopup('Gedung E') 
+            .openPopup(); 
+
+        // POSISI GEDUNG GKU 2 
+        var gedungGKU2 = L.marker([-5.360356, 105.313873]).addTo(map) 
+            .bindPopup('Gedung GKU 2') 
+            .openPopup();
+
+        // POSISI GEDUNG F 
+        var gedungF = L.marker([-5.361445, 105.313683]).addTo(map) 
+            .bindPopup('Gedung F') 
+            .openPopup();
+
+        // POSISI GEDUNG B 
+        var gedungA = L.marker([-5.357923, 105.315366]).addTo(map) 
+            .bindPopup('Gedung B') 
+            .openPopup(); 
+
+        // POSISI GEDUNG LABTEK 3
+        var gedungLabtek3 = L.marker([-5.360242, 105.309077]).addTo(map) 
+            .bindPopup('Gedung Labtek 3') 
+            .openPopup();   
+
+        // POSISI GEDUNG LABTEK 2
+        var gedungLabtek2 = L.marker([-5.361608, 105.310279]).addTo(map) 
+            .bindPopup('Gedung Labtek 2') 
+            .openPopup();  
+
+        // POSISI GEDUNG LABTEK OZT
+        var gedungLabtekOZT = L.marker([-5.362037, 105.310633]).addTo(map) 
+            .bindPopup('Gedung Labtek OZT') 
+            .openPopup(); 
+
+        // POSISI GEDUNG A
+        var gedungB = L.marker([-5.357863, 105.314440]).addTo(map) 
+            .bindPopup('Gedung A') 
+            .openPopup();  
+
+        // BUNDARAN YANG SERING SAYA LANGGAR ATURAN SAAT BERLALU LINTAS DI ITERA
+        var bundaranF = L.circle([-5.363156, 105.312634], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.75,
+            radius: 18
+        }).addTo(map);
+
+        // BUNDARAN INI JUGA SERING SAYA LANGGAR SETELAH SELESAI KULIAH DI GKU 2
+        var bundaranGKU = L.circle([-5.360813, 105.314847], {
+            color: 'green',
+            fillColor: '#00',
+            fillOpacity: 0.5,
+            radius: 35
+        }).addTo(map);
+
+        // POLIGON BANGUNAN GEDUNG F
+        var polygon = L.polygon([
+            [-5.359799, 105.315831],
+            [-5.359957, 105.315831],
+            [-5.359957, 105.315571],
+            [-5.360474, 105.315571],
+            [-5.360474, 105.315401],
+            [-5.359635, 105.315401],
+            [-5.359635, 105.315571],
+            [-5.359799, 105.315571]
+        ]).addTo(map);
+
+        // POLIGON BANGUNAN GEDUNG A
+        var polygon = L.polygon([
+            [ -5.357724, 105.314323],
+            [ -5.358071, 105.314339],
+            [ -5.358059, 105.314512],
+            [ -5.357731, 105.314508]
+        ]).addTo(map);
+
+        // POLIGON BANGUNAN GEDUNG B
+        var polygon = L.polygon([
+            [-5.357735, 105.315243],
+            [-5.358070, 105.315243],
+            [-5.358072, 105.315425],
+            [-5.357739, 105.315410]
+        ]).addTo(map);
+
+        // POLIGON BANGUNAN EMBUNG C
+        var polygon = L.polygon([
+           [-5.358630, 105.314160],
+           [-5.358685, 105.314040],
+           [-5.358986, 105.313819],
+           [-5.359075, 105.313742],
+           [-5.359278, 105.313459],
+           [-5.359457, 105.313339],
+           [-5.361454, 105.313987],
+           [-5.359637, 105.313266],
+           [-5.360004, 105.313167],
+           [-5.360096, 105.313264],
+           [-5.359919, 105.313470],
+           [-5.359765, 105.313563],
+           [-5.359649, 105.313651],
+           [-5.359571, 105.313747],
+           [-5.359571, 105.313747],
+           [-5.359440, 105.313982],
+           [-5.359341, 105.314222],
+           [-5.358683, 105.314207]
+        ]).addTo(map);
+     
+        var baseMaps = {
+            "OSM": osm,
+            "ESRI": Esri_WorldImagery,
+        };
+        var overlayMaps = {
+            "Gedung GKU 1": gedungGKU1,
+            "Gedung GKU 2": gedungGKU2,
+            "Gedung F": gedungF,
+            "Gedung A": gedungA,
+            "Gedung Labtek 3": gedungLabtek3,
+            "Gedung Labtek 2": gedungLabtek2,
+            "Gedung Labtek OZT": gedungLabtekOZT,
+            "Gedung B": gedungB,
+            "Bundaran F": bundaranF,
+            "Bundaran GKU": bundaranGKU,
+            "Gedung E":gedungE,
+            "Gedung Bandar Lampung": polygon,
+        };
+
+        // Control untuk Table of Content
+        L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+    </script>
+</body>
+</html>
